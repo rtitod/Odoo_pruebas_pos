@@ -1,0 +1,201 @@
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
+## In general, you DON'T NEED to declare new assets here, just put the files in the proper directory.
+## NOTABLE EXCEPTION: List the new .css files in the `point_of_sale.assets` bundle taking into consideration
+## 1. When defining new component, put the .js files in `point_of_sale/static/src/js/`
+##    and the corresponding .xml files in `point_of_sale/static/src/xml/`
+##    * POS is setup to automatically include the .xml and `.js` files in `point_of_sale.assets`.
+## 2. When adding new tour tests, put the .js files in `point_of_sale/static/tests/tours/`.
+## 3. When adding new qunit tests, put the .js files in `point_of_sale/static/tests/unit/`.
+## If your use case doesn't fit anything above, you might need to properly understand each "asset bundle"
+## defined here and check how they are used in the following "index templates":
+##          ->  This is the unit test, accessible by clicking the "Run Point of Sale JS Tests" button
+# if we need to add more and more legacy stuff that would require other scss or js.
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
+""" Verify that the default pricelist belongs to the same company as the config """
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
+"""This test make sure that no user is created when a partner is set on the PoS order.
+"""This test make sure that when the user is already connected he correctly gets redirected to the invoice."""
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
+# PoS Orders have negative IDs to avoid conflict, so reports[0] will correspond to the newest order
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
+# This test will check that the correct journal entries are created when a product in real time valuation
+""" Set the cost method of `self.product` as FIFO. Receive 5@5 and 5@1 and
+# This test will check that the correct journal entries are created when a product in real time valuation
+# is sold using the ship later option and no invoice is created in a company using anglo-saxon
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
+""" This group of tests is for sanity check in setting up global records which will be used
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
+""" Test for invoiced orders with customers having receivable account different from default
+# ensure that only product taxes of the current session's company are considered
+#(this tax should be ignore when computing order's taxes in following tests)
+# Set account_id in the generated repartition lines. Automatically, nothing is set.
+# company_currency can be different from `base.USD` depending on the localization installed
+# sometimes company_currency is different from USD, so handle appropriately.
+#   - derived from 'point_of_sale.pos_config_main' with added invoice_journal_id and credit payment method.
+# We allow partial checks of the lines of the account move if `line_ids_predicate` is specified.
+# This means that only those that satisfy the predicate are compared to the expected account move line_ids.
+# if the expected_account_move_vals is falsy, the account_move should be falsy.
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
+# so the js tests can expect deterministically this pricelist when selecting a customer.
+""" Test the discount display on the POS screen when multiple pricelists are used."""
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
+""" When having several POS with cash control, this tests ensures that each POS has its correct opening amount """
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
+# Product price should be half of the original price because currency rate is 0.5.
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
+# Avoid "A Chart of Accounts is not yet installed in your current company."
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
+# needs to check the residual because it's supposed to be partial reconciled
+# needs to check the residual because it's supposed to be partial reconciled
+# needs to check the residual because it's supposed to be partial reconciled
+# needs to check the residual because it's supposed to be partial reconciled
+# needs to check the residual because it's supposed to be partial reconciled
+# needs to check the residual because it's supposed to be partial reconciled
+# needs to check the residual because it's supposed to be partial reconciled
+# needs to check the residual because it's supposed to be partial reconciled
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
+# One picking attached and having all the positive move lines in the correct state
+# One picking attached and having all the positive move lines in the correct state
+# One picking attached and having all the positive move lines in the correct state
+""" This test is similar to test_order_to_picking except that this time, there are two products:
+# I create a new PoS order with 2 units of PC1 at 450 EUR (Tax Incl) and 3 units of PCSC349 at 300 EUR. (Tax Excl)
+# I create a new PoS order with 2 units of PC1 at 450 EUR (Tax Incl) and 3 units of PCSC349 at 300 EUR. (Tax Excl)
+# closing which will return the action because the internal rollback call messes
+# with the rollback of the test runner. So instead, we directly call the method
+""" Test that orders in sessions with "Ship Later" enabled and "Specific Route" set to a
+""" Test the flow of creating an invoice later, after the POS session has been closed and everything has been processed.
+# We should now have: an invoice, a payment, and a misc entry reconciled with the payment that reverse the original POS closing entry.
+# This search isn't the best, but we don't have any references to this move stored on other models.
+# Check 1: Check that we have reversed every credit line on the closing entry.
+# The invoice receivable should be reconciled with the payment receivable of the same account.
+# The payment receivable (POS) is reconciled with the closing entry receivable (POS)
+"""Test that when the default_pos_receivable_account and the partner account_receivable are the same,
+#get journal entry that does the reverse payment, it the ref must contains Reversal
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
+# The same POS session can be opened by a different user => search without restricting to
+# current user. Note: the config must be explicitly given to avoid fallbacking on a random
+# The POS only work in one company, so we enforce the one of the session in the context
+""" Parse the values in the kwargs by extracting the ones matching the given fields name.
+# Get the order using the access token. We can't use the id in the route because we may not have it yet when the QR code is generated.
+# If the order was already invoiced, return the invoice directly by forcing the access token so that the non-connected user can see it.
+# Get the optional extra fields that could be required for a localisation.
+# Validate the form by ensuring required fields are filled and the VAT is correct.
+# Extract the additional fields values from the kwargs now as they can't be there when validating the 'regular' partner form.
+# Do the same for invoice values, separately as they are only needed for the invoice creation.
+# Check the basic form fields if the user is not connected as we will need these information to create the new user.
+# Most of the time, the country of the customer will be the same as the order. We can prefill it by default with the country of the company.
+# Prefill the customer extra values if there is any and an user is connected
+# This is just to ensure that the user went and filled its information at least once.
+# If the user is not connected, then we will simply create a new partner with the form values.
+# Matching with existing partner was tried, but we then can't update the values, and it would force the user to use the ones from the first invoicing.
+# If the user is connected, then we can update if needed its fields with the additional localized fields if any, then proceed.
+# Get the required fields for the invoice and add them to the context as default values.
+# Allowing default values for moves is important for some localizations that would need specific fields to be set on the invoice, such as Mexico.
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
+# Copyright (C) 2004-2008 PC Solutions (<http://pcsol.be>). All Rights Reserved
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
+"""When force_outstanding_account_id is set, we use it as the outstanding_account_id."""
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
+"""Remove the payment methods that are created for the company before installing the chart of accounts.
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
+"""Add pos_payment_name field in the reconciled vals to be able to show the payment method in the invoice."""
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
+# Already called in self._action_confirm() but just to be safe when coming from _launch_stock_rule_from_pos_order_lines.
+#The previous search may return (product_id.id, lot_name) combinations that have no matching in lines.pack_lot_ids.
+# Moves with product_id not in related_order_lines. This can happend e.g. when product_id has a phantom-type bom.
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
+# If the session is in rescue, we only compute the payments in the cash register
+# It is not yet possible to close a rescue session through the front end, see `close_session_from_ui`
+# when closing a session. There are other database changes that will happen
+# before attempting to create the account move, such as, creating the picking
+# We don't, however, want them to be committed when the account move creation
+# failed; therefore, we need to roll back this transaction before showing the
+# NOTE This can't handle `bank_payment_method_diffs` because there is no field in the wizard that can carry it.
+# Even if this is called in `post_closing_cash_details`, we need to call this here too for case
+# If an error is raised, the user will still be redirected to the back end to manually close the session.
+# If the return result is a dict, this means that normally we have a redirection or a wizard => we redirect the user
+# The user is blocked anyway, this user error is mostly for developers that try to call this function
+# `imbalance_amount` is already in terms of company currency so it is the amount_converted
+# param when calling `_credit_amounts`. amount param will be the converted value of
+# Track the receivable lines of the order's invoice payment moves for reconciliation
+# These receivable lines are reconciled to the corresponding invoice receivable lines
+# If not pay_later, we create the receivable vals for both invoiced and uninvoiced orders.
+# Moreover, if the order is invoiced, we create the pos receivable vals that will balance the
+# Create the vals to create the pos receivables that will balance the pos receivables from invoice payment moves.
+# But only do if order is *not* invoiced because no account move is created for pay later invoice payments.
+# Check if all taxes lines have account_id assigned. If not, there are repartition lines of the tax that have no account_id.
+# revert the accounts because account.payment doesn't accept negative amount.
+# revert the accounts because account.payment doesn't accept negative amount.
+# Create the split and combine cash statement lines and account move lines.
+# `split_cash_statement_lines` maps `journal` -> split cash statement lines
+# `combine_cash_statement_lines` maps `journal` -> combine cash statement lines
+# `split_cash_receivable_lines` maps `journal` -> split cash receivable lines
+# `combine_cash_receivable_lines` maps `journal` -> combine cash receivable lines
+# they are reconciled with the lines in combine_inv_payment_receivable_lines
+# they are reconciled with output lines in the stock.move's account.move.line
+# Reconcile invoice payments' receivable lines. But we only do when the account is reconcilable.
+# Though `account_default_pos_receivable_account_id` should be of type receivable, there is currently
+# no constraint for it. Therefore, it is possible to put set a non-reconcilable account to it.
+""" Derive from order_line the order date, income account, amount and taxes information.
+# The 'is_refund' parameter is used to compute the tax tags. Ultimately, the tags are part
+# of the key used for summing taxes. Since the POS UI doesn't support the tags, inconsistencies
+# For Cash based taxes, use the account from the repartition line immediately as it has been paid already
+"""Responsible for adding `amounts_to_add` to `old_amounts` considering the currency of the session.
+""" `partial_move_line_vals` is completed by `credit`ing the given amounts.
+""" `partial_move_line_vals` is completed by `debit`ing the given amounts.
+# self should be single record as this method is only called in the subfunctions of self._validate_session
+# we are querying over the account.move.line because its 'ref' is indexed.
+"""Returns the default pos receivable account if no receivable_account_id is set on the payment method."""
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
+# used to hide use_payment_terminal when no payment interfaces are installed
+"""Used by inheriting model to unset the value of the field related to the unselected payment terminal."""
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
+# Copyright (C) 2004-2008 PC Solutions (<http://pcsol.be>). All Rights Reserved
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
+""" Should only default to payment methods that are compatible to this config's company and currency.
+"""If there is an open session, store it to current_session_id / current_session_State.
+# If you plan to add something after this, use a new environment. The one above is no longer valid after the modules install.
+# Delete the pos.config records first then delete the sequences linked to them
+# just in case we want to do something if we install a module. (like a refresh ...)
+# All following methods are made to create data needed in POS, when a localisation
+# is installed, or if POS is installed on database having companies that already have
+"""Extend this method to customize the existing pos.config of the company during the installation
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
+"""Create account.bank.statement.lines from the dictionary given to the parent function.
+# This method is used in pos_restaurant for orders synchronization between different POSes
+# TODO: add support for mix of cash and non-cash payments when both cash_rounding and only_round_cash_method are True
+# Concert each order line to a dictionary containing business values. Also, prepare for taxes computation.
+""" Create a misc move to reverse this POS order and "remove" it from the POS closing entry.
+# Reconcile the new receivable line with the lines from the payment move.
+# If a client requires the invoice later, we need to revers the amount from the closing entry, by making a new entry for that.
+# When a refund is performed, we are creating it in a session having the same config as the original
+# order. It can be the same session, or if it has been closed the new one that has been opened.
+"""Search for 'paid' orders that satisfy the given domain, limit and offset."""
+""" Returns a list of dict with each item having similar signature as the return of
+""" Prepare specific key for moves or other components that will be created from a stock rule
+# This next block is currently needed only because the scheduler trigger is done by picking confirmation rather than stock.move confirmation
+""" Serialise the orders of the requested time period, configs and sessions.
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
+""" This constrains makes it impossible to change the period lock date if
+#   They will be written atomically to `pos_config_id` after the super call.
+# NOTE: When creating `res.config.settings` records, it doesn't write on *unmodified* related fields.
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
